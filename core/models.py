@@ -1,4 +1,6 @@
+
 from django.db import models # type: ignore
+
 
 class Car(models.Model):
 
@@ -6,7 +8,8 @@ class Car(models.Model):
     brand = models.CharField(max_length=100)
     plate = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
-    like = models.IntegerField(default=0)
+    created = models.IntegerField(default=0)
+    like = models.IntegerField(max_length=0)
     photo = models.FileField(upload_to='img')
 
     def __str__(self):

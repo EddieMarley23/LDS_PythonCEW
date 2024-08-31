@@ -28,10 +28,11 @@ def save(request):
     vbrand = request.POST.get("brand")
     vplate = request.POST.get("plate")
     vname = request.POST.get("name")
+    vowner =request.POST.get("createdby")
     file = request.FILES.get("photo")
 
     # Cria o objeto Car e associa a imagem
-    car = Car(model=vmodel, brand=vbrand, plate=vplate, name=vname, photo=file)
+    car = Car(model=vmodel, brand=vbrand, plate=vplate, name=vname, photo=file, created = vowner, like =0)
     car.save()  
 
     
@@ -42,8 +43,8 @@ def save(request):
 
 
 def update(request, id):
-
-    carId = Car.objects.get(id=id)
+    user = User.objects.get(id = id)
+    carId = Car.objects.get(created = user.id)
     return render(request,"update.html", {"car": carId})
 
 
