@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atualização de Dados</title>
+</head>
+<body>
+
+<h1>Atualização de Dados</h1>
+
+<ul>
+    <li>
+        <img src="{{ car.photo }}" alt="Foto do carro">
+    </li> 
+    <li>{{ car.id }} - {{ car.name }}</li>
+</ul>
+
+<form action="{% url 'updating' car.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <label for="model">Modelo:</label>
+        <input type="text" id="model" name="model" value="{{ car.model }}">
+    </div>
+    <div>
+        <label for="brand">Marca:</label>
+        <input type="text" id="brand" name="brand" value="{{ car.brand }}">
+    </div>
+    <div>
+        <label for="plate">Placa:</label>
+        <input type="text" id="plate" name="plate" value="{{ car.plate }}">
+    </div>
+    <div>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" value="{{ car.name }}">
+    </div>
+    <div class="form-group">
+        <label for="photo">Foto:</label>
+        <input type="file" id="photo" name="photo" >
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+
+</body>
+</html>

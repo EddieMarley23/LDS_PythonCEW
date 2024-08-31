@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+ <h1>Hello world</h1>
+<ul>
+{% for car in car_list %}
+<li><img src="{{ car.photo }}"></li>
+<li>{{ car.id }} - {{ car.name }} 
+<a href="{% url 'update' car.id %}">Editar</a>
+<a href="{% url 'delete' car.id %}">Deletar</a></li>
+{% endfor %}
+
+
+<br><br><br><br>
+
+<form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="model">Modelo</label>
+        <input type="text" id="model" name="model" placeholder="Digite o modelo" required>
+    </div>
+
+    <div class="form-group">
+        <label for="brand">Marca</label>
+        <input type="text" id="brand" name="brand" placeholder="Digite a marca" required>
+    </div>
+
+    <div class="form-group">
+        <label for="plate">Placa</label>
+        <input type="text" id="plate" name="plate" placeholder="Digite a placa" required>
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+    </div>
+
+    <div class="form-group">
+        <label for="photo">Foto</label>
+        <input type="file" id="photo" name="photo"  required>
+    </div>
+
+    <button type="submit" class="btn-submit">Salvar</button>
+</form>
+</ul>
+</body>
+</html>
