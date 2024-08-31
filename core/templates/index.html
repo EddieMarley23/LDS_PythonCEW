@@ -13,8 +13,8 @@
 <ul>
 {% for car in car_list %}
 <li><img src="{{ car.photo }}"></li>
-<li>{{ car.id }} - {{ car.name }} 
-<a href="{% url 'update' car.id %}">Editar</a>
+<li>{{ car.id }} - {{ car.name }} - {{car.like}}
+<a href="{% url 'toAssess' car.id %}">Curtir</a>
 <a href="{% url 'delete' car.id %}">Deletar</a></li>
 {% endfor %}
 

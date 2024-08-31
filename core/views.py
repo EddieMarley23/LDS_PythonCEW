@@ -65,6 +65,12 @@ def updating(request, id):
             car.photo = file
         car.save()
         return redirect('home')
+
+def toAssess(request, id):
+        car = Car.objects.get(id=id)
+        car.like += 1
+        car.save()
+        return redirect('home')
      
 
 def delete(request, id):
