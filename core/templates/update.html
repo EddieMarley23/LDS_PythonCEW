@@ -11,37 +11,53 @@
 
 <h1>Atualização de Dados</h1>
 
-<ul>
-    <li>
-        <img src="{{ car.photo }}" alt="Foto do carro">
-    </li> 
-    <li>{{ car.id }} - {{ car.name }}</li>
-</ul>
+<br>
+{% if car_list %}
 
-<form action="{% url 'updating' car.id %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div>
-        <label for="model">Modelo:</label>
-        <input type="text" id="model" name="model" value="{{ car.model }}">
-    </div>
-    <div>
-        <label for="brand">Marca:</label>
-        <input type="text" id="brand" name="brand" value="{{ car.brand }}">
-    </div>
-    <div>
-        <label for="plate">Placa:</label>
-        <input type="text" id="plate" name="plate" value="{{ car.plate }}">
-    </div>
-    <div>
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" value="{{ car.name }}">
-    </div>
-    <div class="form-group">
-        <label for="photo">Foto:</label>
-        <input type="file" id="photo" name="photo" >
-    </div>
-    <button type="submit">Salvar</button>
-</form>
+    {% for car_list in car_list %}
+    
+    <img src="{{car_list.photo.url}}" alt="Imagem não encontrada">
+
+      <p>{{ car_list.id }} - {{ car_list.name }} - {{car_list.like}}</p>
+
+      <a href="{% url 'updateMyCar' car_list.id %}">Editar</a>
+      <a href="{% url 'delete' car_list.id %}">Deletar</a>
+    
+  {% endfor %}
+{% else %}
+  <p>Nenhum carro encontrado.</p>
+{% endif %}
+ 
+    
+    <form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="model">Modelo:</label>
+            <input type="text" id="model" name="model" placeholder="Digite o modelo" required>
+        </div>
+        <div class="form-group">
+            <label for="brand">Marca:</label>
+            <input type="text" id="brand" name="brand" placeholder="Digite a marca" required>
+        </div>
+        <div class="form-group">
+            <label for="plate">Placa:</label>
+            <input type="text" id="plate" name="plate" placeholder="Digite a placa" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+        </div>
+        <div class="form-group">
+            <label for="createdby">Dono:</label>
+            <input type="hidden" id="createdby" name="createdby" value="{{ user.id }}" required>
+        </div>
+        <div class="form-group">
+            <label for="photo">Foto:</label>
+            <input type="file" id="photo" name="photo"  required>
+        </div>
+        <button type="submit" class="btn-submit">Fazer Nova Publicação</button>
+    </form>
+
 
 </body>
 </html>

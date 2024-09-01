@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ("brand", models.CharField(max_length=20)),
                 ("plate", models.CharField(max_length=100)),
                 ("name", models.CharField(max_length=100)),
-                
+                ("createdby", models.IntegerField()),
                 ("like",models.IntegerField(default=0)),
                 ("photo", models.FileField(upload_to='img')),
                 

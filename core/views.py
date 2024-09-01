@@ -4,12 +4,12 @@ from django.http import HttpResponse # type: ignore
 from django.shortcuts import render, redirect # type: ignore
 from .models import Car
 from django.conf import settings # type: ignore
-from PIL import Image # type: ignore
-import os
 from django.contrib.auth.models import User # type: ignore
 from django.contrib.auth import authenticate # type: ignore
 from django.contrib.auth import login as lg # type: ignore
-
+from django.contrib.auth import logout as lgout # type: ignore
+from django.contrib import messages # type: ignore
+from django.shortcuts import render, get_object_or_404 # type: ignore
 
 
 def home(request):
@@ -32,21 +32,35 @@ def save(request):
     file = request.FILES.get("photo")
 
     # Cria o objeto Car e associa a imagem
-    car = Car(model=vmodel, brand=vbrand, plate=vplate, name=vname, photo=file, created = vowner, like =0)
+    car = Car(model=vmodel, brand=vbrand, plate=vplate, name=vname, photo=file, createdby = vowner, like =0)
     car.save()  
 
     
-    cars = Car.objects.all()
+   
 
 
-    return render(request,"index.html", {"car_list":cars})
+    return redirect(home)
 
 
 def update(request, id):
-    user = User.objects.get(id = id)
-    carId = Car.objects.get(created = user.id)
-    return render(request,"update.html", {"car": carId})
+    user = get_object_or_404(User, id=id)
+    print(user)
 
+    car_list = Car.objects.filter(createdby=user.id)
+
+    for i in range(len(car_list)):
+     print(car_list[i])
+
+    return render(request, "update.html", {"car_list": car_list, "user": user})
+
+
+def updateMyCar(request, id):
+    
+    car = Car.objects.get(id=id) 
+
+
+    return render(request, "updateMyCar.html", {"car": car})
+ 
 
 def updating(request, id):
   
@@ -91,12 +105,13 @@ def register(request):
 
         user = User.objects.filter(username = username).first()
         if user:
-             return HttpResponse("Já Existe um usuário com este nome!")
-        
-        user = User.objects.create_user(username,email,password)
-        user.save()
-
-        return HttpResponse("Usuário Cadastrado com sucesso!")  # Retorna HttpResponse com a mensagem
+             messages.success(request, "Usuário já existe!")
+             return redirect('login')
+        else:
+            user = User.objects.create_user(username,email,password)
+            user.save()
+            return redirect(login)
+          # Retorna HttpResponse com a mensagem
 
         
 
@@ -117,3 +132,7 @@ def login(request):
          else:
              
               return redirect(login)
+         
+def logout(request):
+    lgout(request)
+    return redirect(login)

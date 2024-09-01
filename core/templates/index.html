@@ -10,19 +10,25 @@
 <body>
 
  <h1>Hello world {{user.username}}</h1>
+ <br><br><br><br>
 <ul>
-{% for car in car_list %}
-<li><img src="{{ car.photo }}"></li>
-<li>{{ car.id }} - {{ car.name }} - {{car.like}}
-<a href="{% url 'toAssess' car.id %}">Curtir</a>
-<a href="{% url 'delete' car.id %}">Deletar</a></li>
-{% endfor %}
+    {% for car in car_list %}
+    
+    <img src="{{car.photo.url}}" alt="Imagem não encontrada">
+
+      <p>{{ car.id }} - {{ car.name }} - {{car.like}}</p>
+      <a href="{% url 'toAssess' car.id %}">Curtir</a>
+      <a href="{% url 'delete' car.id %}">Deletar</a>
+    
+  {% endfor %}
 
 
 <br><br><br><br>
 
 <form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    {{ form.as_p }}
+
     <div class="form-group">
         <label for="model">Modelo</label>
         <input type="text" id="model" name="model" placeholder="Digite o modelo" required>
@@ -54,8 +60,10 @@
 
     <button type="submit" class="btn-submit">Salvar</button>
 </form>
-
-<a href="{% url 'update' user.id %}">Editar meus Carros</a>
+<br><br><br><br>
+<button><a href="{% url 'update' user.id %}">Editar meus Carros</a></button>
+<br><br>
+<button><a href="{% url 'logout' %}">Sair</a></button>
 </ul>
 </body>
 </html>

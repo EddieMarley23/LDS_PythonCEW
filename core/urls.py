@@ -1,5 +1,5 @@
 from django.urls import path # type: ignore
-from .views import home, save, update, updating, delete,register,login, toAssess
+from .views import home, save, update, updating, delete,register,login, toAssess, logout, updateMyCar
 from django.conf import settings # type: ignore
 from django.conf.urls.static import static # type: ignore
 
@@ -12,7 +12,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login ,name = 'login'),
     path('toAssess/<int:id>', toAssess, name='toAssess'),
+    path('logout/', logout, name = 'logout'),
+    path('updateMyCar/<int:id>', updateMyCar, name = 'updateMyCar')
+    
    
-
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
