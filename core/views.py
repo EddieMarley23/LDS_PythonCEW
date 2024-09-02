@@ -1,6 +1,5 @@
-
+from django.shortcuts import render
 from pyexpat.errors import messages
-from django.http import HttpResponse # type: ignore
 from django.shortcuts import render, redirect # type: ignore
 from .models import Car
 from django.conf import settings # type: ignore
@@ -12,6 +11,7 @@ from django.contrib import messages # type: ignore
 from django.shortcuts import render, get_object_or_404 # type: ignore
 
 
+
 def home(request):
    
         if request.user.is_authenticated:
@@ -20,8 +20,6 @@ def home(request):
         else:
              return redirect (login)
         
-
-
 
 def save(request):
     vmodel = request.POST.get("model")
@@ -34,11 +32,7 @@ def save(request):
     # Cria o objeto Car e associa a imagem
     car = Car(model=vmodel, brand=vbrand, plate=vplate, name=vname, photo=file, createdby = vowner, like =0)
     car.save()  
-
-    
    
-
-
     return redirect(home)
 
 
@@ -86,14 +80,12 @@ def toAssess(request, id):
         car.like += 1
         car.save()
         return redirect('home')
-     
+
 
 def delete(request, id):
         car = Car.objects.get(id=id)
         car.delete()
         return redirect('home')
-
-
 
 def register(request):
     if request.method == "GET":
@@ -111,11 +103,7 @@ def register(request):
             user = User.objects.create_user(username,email,password)
             user.save()
             return redirect(login)
-          # Retorna HttpResponse com a mensagem
-
         
-
-
 def login(request):
     if request.method =="GET":
         return render(request, 'login.html')
@@ -136,3 +124,7 @@ def login(request):
 def logout(request):
     lgout(request)
     return redirect(login)
+        
+
+# Create your views here.
+

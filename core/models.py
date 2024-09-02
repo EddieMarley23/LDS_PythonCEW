@@ -1,5 +1,4 @@
-
-from django.db import models # type: ignore
+from django.db import models
 from django.core.validators import FileExtensionValidator # type: ignore
 
 
@@ -15,7 +14,5 @@ class Car(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 # Create your models here.
