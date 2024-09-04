@@ -9,8 +9,8 @@ class Car(models.Model):
     plate = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     createdby = models.IntegerField()
-    like = models.IntegerField()
-    photo = models.ImageField(upload_to='img',validators=[FileExtensionValidator(['.png', '.jpg', '.jpeg'])])
+    like = models.IntegerField(default=0)
+    photo = models.ImageField(upload_to='img',blank=True, null=True)
 
     def __str__(self):
         return self.name
