@@ -1,0 +1,205 @@
+/* Estilos Globais - Aplicados a ambas as páginas */
+body {
+    background-image: url('../img/carro1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-top: 60px; /* Espaço para a navbar fixa */
+}
+
+/* Estilo para a Navbar */
+.navbar {
+    width: 100%;
+    background-color: #000000ce;
+    color: white;
+    padding: 5px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-icon {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-title, .navbar-title_index {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Estilo para Links na Navbar */
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.navbar-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Estilo do Rodapé */
+.footer {
+    background-color: #ffffffe8;
+    color: rgb(255, 17, 0);
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos para a Página de Login */
+.login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin-top: 20px; /* Adicionado para espaçamento */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.messages {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e7f3fe;
+    border-left: 5px solid #2196f3;
+    list-style-type: none;
+}
+
+.messages li {
+    margin: 5px 0;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f71000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff1e00ab;
+}
+
+.register-link {
+    display: block;
+    margin-top: 10px;
+}
+
+
+/* Estilos para a Página de Índice */
+.index-container {
+    background-color: #ffffffd9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.car-list {
+    list-style: none;
+    padding: 0;
+}
+
+.car-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.car-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Estilos para Botões na Página de Índice */
+.index-button, .btn-submit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f71000;
+    color: white; /* Cor do texto branca */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px; /* Margem superior para espaçamento entre botões */
+    margin-right: 10px; /* Margem direita para espaçamento horizontal */
+}
+
+.index-button:hover, .btn-submit:hover {
+    background-color: #ff1e00ab;
+}
+
+/* Estilo para os links dentro dos botões */
+.index-button a {
+    color: white; /* Cor do texto branca */
+    text-decoration: none; /* Remove o sublinhado do link */
+}
+
+
+.car-form .form-group {
+    margin-bottom: 15px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

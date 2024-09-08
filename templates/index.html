@@ -1,69 +1,57 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
- <h1>Hello world {{user.username}}</h1>
- <br><br><br><br>
-<ul>
-    {% for car in car_list %}
+<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-icon">
+            <span class="navbar-title">{{ user.username }}</span>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'update' user.id %}">Arrumar Garagem</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Conteúdo Principal -->
+<div class="index-container">
+    <h1>Eae, seu boiola! Seja bem vindo!{{ user.username }}</h1>
+
+    <ul class="car-list">
+        {% for car in car_list %}
+        <li class="car-item">
+            <img src="{{ car.photo.url }}" alt="Imagem não encontrada" class="car-image">
+            <p>{{ car.id }} - {{ car.name }} - {{ car.like }}</p>
+            <div class="action-buttons">
+                <a href="{% url 'toAssess' car.id %}" class="index-button">Curtir</a>
+                <a href="{% url 'delete' car.id %}" class="index-button">Deletar</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
     
-    <img src="{{car.photo.url}}" alt="Imagem não encontrada">
-
-      <p>{{ car.id }} - {{ car.name }} - {{car.like}}</p>
-      <a href="{% url 'toAssess' car.id %}">Curtir</a>
-      <a href="{% url 'delete' car.id %}">Deletar</a>
+    <br>
     
-  {% endfor %}
+   
+</div>
 
+<!-- Rodapé -->
+<div class="footer">
+    <p>© 2024 Car Manager - Todos os direitos reservados.</p>
+</div>
 
-<br><br><br><br>
-
-<form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <div class="form-group">
-        <label for="model">Modelo</label>
-        <input type="text" id="model" name="model" placeholder="Digite o modelo" required>
-    </div>
-
-    <div class="form-group">
-        <label for="brand">Marca</label>
-        <input type="text" id="brand" name="brand" placeholder="Digite a marca" required>
-    </div>
-
-    <div class="form-group">
-        <label for="plate">Placa</label>
-        <input type="text" id="plate" name="plate" placeholder="Digite a placa" required>
-    </div>
-
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
-    </div>
-    <div class="form-group">
-        <label for="createdby">Dono</label>
-        <input type="text" id="createdby" name="createdby" value="{{user.id}}" required>
-    </div>
-
-    <div class="form-group">
-        <label for="photo">Foto</label>
-        <input type="file" id="photo" name="photo"  required>
-    </div>
-
-    <button type="submit" class="btn-submit">Salvar</button>
-</form>
-<br><br><br><br>
-<button><a href="{% url 'update' user.id %}">Editar meus Carros</a></button>
-<br><br>
-<button><a href="{% url 'logout' %}">Sair</a></button>
-</ul>
 </body>
 </html>
