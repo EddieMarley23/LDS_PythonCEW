@@ -1,5 +1,9 @@
 /* Estilos Globais - Aplicados a ambas as páginas */
 body {
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url('../img/carro1.jpg');
     background-size: cover;
     background-position: center;
@@ -8,6 +12,10 @@ body {
     margin: 0;
     padding-top: 60px; /* Espaço para a navbar fixa */
 }
+
+/* body{
+     /* Garante que 
+    } */
 
 /* Estilo para a Navbar */
 .navbar {
@@ -42,28 +50,30 @@ body {
     font-weight: bold;
 }
 
-/* Estilo para Links na Navbar */
+/* Estilo para os links na Navbar */
 .navbar-links {
-    list-style: none;
+    list-style: none;  /* Remove os marcadores das listas */
     margin: 0;
     padding: 0;
     display: flex;
     gap: 15px;
+    margin-left: auto; /* Empurra os links para a direita */
+    justify-content:flex-end;
 }
 
 .navbar-links li {
-    display: inline;
+    display: inline; /* Exibe os itens da lista na horizontal */
 }
 
 .navbar-links a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
+    color: white; /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    padding: 5px 10px; /* Espaçamento interno para os links */
 }
 
 .navbar-links a:hover {
-    background-color: #555;
-    border-radius: 5px;
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+    border-radius: 5px; /* Borda arredondada ao passar o mouse */
 }
 
 /* Estilo do Rodapé */
@@ -87,6 +97,7 @@ body {
     text-align: center;
     margin-top: 20px; /* Adicionado para espaçamento */
 }
+
 
 h2 {
     margin-bottom: 20px;
@@ -203,3 +214,165 @@ button:hover {
     justify-content: space-between;
     margin-top: 20px;
 }
+
+/* Estilos para a página de Cadastro */
+.cadastro-container {
+    background-color: #fff; /* Fundo branco para o formulário */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    width: 300px; /* Largura fixa para o formulário */
+    margin: 50px auto; /* Centraliza o formulário na página */
+    text-align: center; /* Centraliza o texto */
+}
+
+.cadastro-container h2 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    font-size: 24px; /* Tamanho da fonte maior para o título */
+    color: #333; /* Cor mais escura para o título */
+}
+
+.cadastro-container label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px; /* Espaçamento entre o label e o input */
+    font-weight: bold;
+}
+
+.cadastro-container input {
+    width: calc(100% - 22px); /* O input ocupa 100% da largura do contêiner menos o padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Borda suave para o input */
+    border-radius: 5px;
+    font-size: 14px; /* Tamanho da fonte dos inputs */
+}
+
+.cadastro-container button {
+    width: 100%; /* O botão ocupa 100% da largura do contêiner */
+    padding: 10px;
+    background-color: #f71000; /* Cor de fundo vermelha */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Tamanho da fonte do botão */
+    margin-top: 10px; /* Margem superior para espaçamento entre botões */
+}
+
+.cadastro-container button:hover {
+    background-color: #ff1e00ab; /* Cor do botão ao passar o mouse */
+}
+
+.cadastro-container a button {
+    background-color: #555; /* Diferente cor para o botão de login */
+}
+
+.cadastro-container a button:hover {
+    background-color: #444; /* Cor ao passar o mouse */
+}
+
+/* Estilos exclusivos para a página de Atualização de Dados 1 */
+.update-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffffffd9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-title {
+    text-align: center;
+    color: #f71000;
+    margin-top: 20px;
+}
+
+/* Estilos para o formulário */
+.update-form {
+    margin-top: 20px;
+}
+
+.update-form .form-group {
+    margin-bottom: 15px;
+}
+
+.update-form .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.update-form .form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #f71000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #ff1e00ab;
+}
+
+/* Estilos para a listagem de carros */
+.car-list-container {
+    margin-top: 20px;
+}
+
+.car-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.car-image-update {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.car-info {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.car-actions {
+    margin-top: 10px;
+}
+
+.car-edit, .car-delete {
+    text-decoration: none;
+    color: #f71000;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.car-edit:hover, .car-delete:hover {
+    color: #ff1e00ab;
+}
+
+/* Estilo para o caso de nenhum carro ser encontrado */
+.no-cars {
+    font-size: 18px;
+    color: #ff1e00;
+    text-align: center;
+}
+
+

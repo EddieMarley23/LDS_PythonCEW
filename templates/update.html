@@ -1,35 +1,54 @@
 <!doctype html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Atualização de Dados</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
 </head>
 <body>
 
-<h1>Atualização de Dados</h1>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-container">
+        <a href="{% url 'home' %}" class="navbar-icon">
+            <img src="{% static 'img/logo.png' %}" alt="Ícone do Site" width="40" height="40">
+        </a>
+        <h1 class="navbar-title">REDLINE</h1>
+    </div>
+        <ul class="navbar-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'update' user.id %}">Arrumar Garagem</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+</div>
 
-<br>
-{% if car_list %}
-
-    {% for car_list in car_list %}
+<div class="update-container">
+    <h1 class="update-title">Atualização de Dados</h1>
+    <br>
+    {% if car_list %}
+        <div class="car-list-container">
+            {% for car_list in car_list %}
+                <div class="car-item">
+                    <img class="car-image-update" src="{{car_list.photo.url}}" alt="Imagem não encontrada">
+                    <p class="car-info">{{ car_list.id }} - {{ car_list.name }} - {{ car_list.like }}</p>
+                    <div class="car-actions">
+                        <a class="car-edit" href="{% url 'updateMyCar' car_list.id %}">Editar</a>
+                        <a class="car-delete" href="{% url 'delete' car_list.id %}">Deletar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-cars">Nenhum carro encontrado.</p>
+    {% endif %}
     
-    <img src="{{car_list.photo.url}}" alt="Imagem não encontrada">
-
-      <p>{{ car_list.id }} - {{ car_list.name }} - {{car_list.like}}</p>
-
-      <a href="{% url 'updateMyCar' car_list.id %}">Editar</a>
-      <a href="{% url 'delete' car_list.id %}">Deletar</a>
-    
-  {% endfor %}
-{% else %}
-  <p>Nenhum carro encontrado.</p>
-{% endif %}
- 
-    
-    <form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'save' %}" method="POST" enctype="multipart/form-data" class="update-form">
         {% csrf_token %}
         <div class="form-group">
             <label for="model">Modelo:</label>
@@ -53,11 +72,11 @@
         </div>
         <div class="form-group">
             <label for="photo">Foto:</label>
-            <input type="file" id="photo" name="photo"  required>
+            <input type="file" id="photo" name="photo" required>
         </div>
         <button type="submit" class="btn-submit">Fazer Nova Publicação</button>
     </form>
-
+</div>
 
 </body>
 </html>
